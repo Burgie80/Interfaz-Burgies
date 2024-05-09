@@ -3,9 +3,9 @@
 /*
   Programa: Práctica 0: Blink
   Autores: 
-    - [Apellidos] [Nombre] - [Número de control]
-    - [Apellidos] [Nombre] - [Número de control]
-    - [Apellidos] [Nombre] - [Número de control]
+    - López Machado Óscar Roberto - [Número de control]
+    - Morales Calvo Ángel Omar - 21212000
+    - Torres Equihua Victor Manuel - [Número de control]
     - Van Pratt González Ricardo Adolfo - 21212581
   Fecha: 29 de abril de 2024
 
