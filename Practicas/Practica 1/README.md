@@ -2,16 +2,16 @@
 
 ```cs
 /*
-  Programa: Pr�ctica 1: C# y Pico W
+  Programa: Práctica 1: C# y Pico W
   Autores: 
-    - L�pez Machado �scar Roberto - [N�mero de control]
-    - Morales Calvo �ngel Omar - [N�mero de control]
-    - Torres Equihua Victor Manuel - [N�mero de control]
-    - Van Pratt Gonz�lez Ricardo Adolfo - 21212581
+    - López Machado Óscar Roberto - [Número de control]
+    - Morales Calvo Ángel Omar - [Número de control]
+    - Torres Equihua Victor Manuel - [Número de control]
+    - Van Pratt González Ricardo Adolfo - 21212581
   Fecha: 29 de abril de 2024
 
-  Descripci�n:
-  Este programa se conecta a una Pico W mediante un programa de Windows Forms para que env�e un mensaje
+  Descripción:
+  Este programa se conecta a una Pico W mediante un programa de Windows Forms para que envíe un mensaje
 
   Licencia: [Tipo de licencia]
 */
@@ -32,13 +32,13 @@ namespace Practica_1
             InitializeComponent();
         }
 
-        // Llama un evento existente para no reescribir el c�digo
+        // Llama un evento existente para no reescribir el código
         private void Form1_Load(object sender, EventArgs e)
         {
             btnReiniciar_Click(sender, e);
         }
 
-        // Borra el mensaje escrito, reestablece el objeto seleccionado, y deshabilita el bot�n de enviar.
+        // Borra el mensaje escrito, reestablece el objeto seleccionado, y deshabilita el botón de enviar.
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             txtMensaje.Clear();
@@ -46,7 +46,7 @@ namespace Practica_1
             btnEnviar.Enabled = false;
         }
 
-        // Establece una conexi�n si se est� desconectado, y lo desconecta si ya estaba conectado.
+        // Establece una conexión si se está desconectado, y lo desconecta si ya estaba conectado.
         // Si el puerto es el apropiado, se conecta exitosamente.
         // Si no swe puede, tira mensaje de error.
         private void btnConexion_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace Practica_1
                 {
                     puerto.Close();
 
-                    MessageBox.Show("Adi�s", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Adiós", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     cmbPuertos.Enabled = true;
                     btnEnviar.Enabled = false;
@@ -81,14 +81,14 @@ namespace Practica_1
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "�Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}", "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
         // Intenta hacer que la Raspberry escriba el mensaje enviado a una terminal.
         // Si no hay un mensaje, despliega un mensaje indicando la falta de texto.
-        // Despliega un mensaje de error si no se complet� la acci�n
+        // Despliega un mensaje de error si no se completó la acción
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             try
@@ -105,7 +105,7 @@ namespace Practica_1
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "�Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}", "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -114,9 +114,9 @@ namespace Practica_1
             Actualizar();
         }
 
-        // Verifica si la barra de texto con el mensaje est� vac�a o no.
-        // Si est� vac�a, deshabilita el bot�n para enviar el mensaje.
-        // Si no est� vac�a, lo habilita.
+        // Verifica si la barra de texto con el mensaje está vacía o no.
+        // Si está vacía, deshabilita el botón para enviar el mensaje.
+        // Si no está vacía, lo habilita.
         private void Actualizar()
         {
             if (string.IsNullOrEmpty(txtMensaje.Text) || check == false)
