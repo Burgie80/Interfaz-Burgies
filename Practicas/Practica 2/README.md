@@ -1,4 +1,5 @@
 # Práctica 2: Pantalla OLED
+## Código
 ```
 /*
   Programa: Práctica 2: Pantalla OLED
@@ -45,3 +46,5 @@ void loop() {
   display.display();
 }
 ```
+## Foto del programa
+![1c1dacc1-c3f8-446a-8d20-ee8d89c3c8d0](https://github.com/Burgie80/Interfaz-Burgies/assets/147211017/d555876c-37a0-4981-81a6-5330d05ab512)
