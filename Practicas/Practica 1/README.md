@@ -1,5 +1,5 @@
 # Práctica 1: C# con Pico W
-
+## Código
 ```cs
 /*
   Programa: Práctica 1: C# y Pico W
@@ -131,3 +131,6 @@ namespace Practica_1
     }
 }
 ```
+## Foto de ejecución
+![Captura de pantalla 2024-05-14 152219](https://github.com/Burgie80/Interfaz-Burgies/assets/147211017/6b8ad2cc-5306-4d8c-ae04-9b33b3144e6f)
+
