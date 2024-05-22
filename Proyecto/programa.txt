@@ -1,0 +1,120 @@
+/*
+  Proyecto: Captura de fotografía mediante un Arduino Nano 33 BLE
+  Autores: 
+    - López Machado Óscar Roberto - 21211978
+    - Morales Hernández José Luis - 21212001
+    - Torres Equihua Victor Manuel - 21212058
+    - Van Pratt González Ricardo Adolfo - 21212581
+  Fecha: 29 de abril de 2024
+
+  Descripción:
+  Este programa aprovecha un Arduino Nano 33 BLE para tomar una foto y desplegarla como valores hexadecimales
+
+  Licencia: [Tipo de licencia]
+*/
+
+#include <TinyMLShield.h>
+
+bool commandRecv = false; // Indica que se recibieron instrucciones desde el puerto
+bool liveFlag = false; // true para un flujo continuo de bytes, false para imágenes individuales
+
+bool captureFlag = false;
+
+// Image buffer;
+byte image[176 * 144 * 2]; // QCIF: 176x144 x 2 bytes per pixel (RGB565)
+int bytesPerFrame;
+
+void setup() {
+  Serial.begin(9600);
+  while (!Serial);
+
+  initializeShield();
+
+  // Inicialización de la cámara OV7675
+  if (!Camera.begin(QCIF, RGB565, 1, OV7675)) {
+    Serial.println("Error inicializando la cámara");
+    while (1);
+  }
+  bytesPerFrame = Camera.width() * Camera.height() * Camera.bytesPerPixel();
+
+  Serial.println("Uso de la cámara OV7675\n");
+  Serial.println("Comandos disponibles:\n");
+  Serial.println("single - Toma una foto y escribe el valor hexadecimal de cada pixel (opción predeterminada)");
+  Serial.println("live - El flujo de bytes se mandará en tiempo real al puerto");
+  Serial.println("capture - En modo single, habilita una captura");
+}
+
+void loop() {
+  int i = 0;
+  String command;
+
+  bool clicked = readShieldButton();
+  if (clicked) {
+    if (!liveFlag) {
+      if (!captureFlag) {
+        captureFlag = true;
+      }
+    }
+  }
+
+  // Lectura de comandos proveniente del monitor de serie
+  while (Serial.available()) {
+    char c = Serial.read();
+    if ((c != '\n') && (c != '\r')) {
+      command.concat(c);
+    } 
+    else if (c == '\r') {
+      commandRecv = true;
+      command.toLowerCase();
+    }
+  }
+
+  // Interpretación de comandos
+  if (commandRecv) {
+    commandRecv = false;
+    if (command == "live") {
+      Serial.println("\nLos datos se transmitirán en 5 segundos...");
+      liveFlag = true;
+      delay(5000);
+    }
+    else if (command == "single") {
+      Serial.println("\nLa cámara está en modo single, escribe \"capture\" para realizar una captura fotográfica");
+      liveFlag = false;
+      delay(200);
+    }
+    else if (command == "capture") {
+      if (!liveFlag) {
+        if (!captureFlag) {
+          captureFlag = true;
+        }
+        delay(200);
+      }
+      else {
+        Serial.println("\nLa cámara no está en modo single, escribe \"single\" primero");
+        delay(1000);
+      }
+    }
+  }
+  
+  if (liveFlag) {
+    Camera.readFrame(image);
+    Serial.write(image, bytesPerFrame);
+  }
+  else {
+    if (captureFlag) {
+      captureFlag = false;
+      Camera.readFrame(image);
+      Serial.println("\nLa imagen se imprimirá en 3 segundos...");
+      delay(3000);
+      for (int i = 0; i < bytesPerFrame - 1; i += 2) {
+        Serial.print("0x");
+        Serial.print(image[i+1], HEX);
+        Serial.print(image[i], HEX);
+        if (i != bytesPerFrame - 2) {
+          Serial.print(", ");
+        }
+      }
+      Serial.println();
+    }
+  }
+}
