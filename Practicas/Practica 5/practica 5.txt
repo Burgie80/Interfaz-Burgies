@@ -25,7 +25,7 @@ const char* ssid = "TecNM-ITT-Docentes";
 const char* password = "Person@L2024!";
 
 // API Key y endpoint de OpenAI (usando la clave de API proporcionada)
-const char* api_key = "hola";
+const char* api_key = "sk-proj-Yyfx5hCGu2m6IAYyN22IT3BlbkFJyPbzt1XRLacTHUBD1uCa";
 const char* endpoint = "https://api.openai.com/v1/chat/completions";
 
 // Configuración del Display OLED
