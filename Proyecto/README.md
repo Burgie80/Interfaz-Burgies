@@ -1,4 +1,14 @@
 # Proyecto final de Lenguajes de Interfaz
+## Proceso de desarrollo y problemas encontrados
+1. La primera parte del desarrollo del proyecto, además de problema encontrado, fue familiarizarse con el equipo a utilizar (Arduino Nano 33 BLE) y qué lo hace diferente de otras placas Arduino, al ser el primer contacto con este por todo el equipo.
+    1.   Se identificaron los componentes físicos.
+    2.   Se buscó en línea respecto al funcionamiento de la cámara, encontrando una serie de ejemplos para ello.
+2. Una vez se comprendió cada parte del material, se procedió a usar los ejemplos encontrados como base para realizar el proyecto, considerando que uno tenía una estructura similar a lo que se pedía.
+    1. Aquí se encontró un problema donde no se sabía cómo "ejecutar" el programa una vez enviado a la placa. Esto se resolvió activando la herramienta de Serial Monitor, que contenía los mensajes que necesitaba el programa para funcionar apropiadamente.
+3. Tras realizar el código para utilizar el botón de la cámara conectada a la placa, se topó con un problema donde lo que se imprimía en pantalla no era una imagen, sino el valor hexadecimal de cada pixel dentro de esta, por lo que se necesitó realizar un programa donde sea posible la conversión de estos valores a una imagen y completar el proyecto.
+    1. Buscando información para convertir bytes en una imagen, se encontró un ejemplo de programa que elabora una imagen mediante los valores que devuelve el primer programa tras tomar la foto. Se combinaron ambos programas, y se logró el objetivo de la práctica.
+4. La última parte del proceso, y posiblemente la más difícil, fue aprender a tomar una foto decente con la cámara incluída, debido a que no había manera de saber cómo se vería la foto (como sería el caso en una cámara o teléfono), hasta que se tomara, por lo que hubo bastante ensayo y error.
+    1. Finalmente, se pudo tomar una foto donde sale la cara de todo el equipo involucrado en el desarrollo de las prácticas y proyecto en este repositorio, sirviendo como conclusión del semestre.
 ## Código
 ### Arduino
 ```cpp
